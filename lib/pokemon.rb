@@ -1,7 +1,7 @@
 class Pokemon
 	attr_reader(:id, :name, :type, :db, :hp)
 
-	def initialize(id:, name:, type:, db:, hp:nil)
+	def initialize(id:, name:, type:, db:, hp:)
 		@id = id
 		@name = name
 		@type = type
@@ -18,6 +18,6 @@ class Pokemon
 
 	def self.find(id, db)
 		db_result = db.execute("SELECT * FROM pokemon WHERE pokemon.id = id")
-		Pokemon.new(id: db_result[0][0], name: db_result[0][1], type: db_result[0][2], db: db)
+		Pokemon.new(id: db_result[0][0], name: db_result[0][1], type: db_result[0][2], hp: db_result[0][3], db: db)
 	end
 end
